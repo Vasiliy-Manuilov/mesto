@@ -1,0 +1,11 @@
+.element__group {
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../images/elements/Group.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  margin-right: 20px;
+  margin-left: auto;
+  padding: 0;
+}

@@ -1,0 +1,8 @@
+.element__item {
+  width: 282px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  background-color: #fff;
+  border-radius: 10px;  
+}
