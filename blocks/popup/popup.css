@@ -5,6 +5,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: visibility 0.2s, opacity 0.2s linear;
-  display: none;
+  visibility: hidden;
 }
