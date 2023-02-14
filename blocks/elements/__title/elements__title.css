@@ -1,4 +1,4 @@
-.element__title {
+.elements__title {
   color: #000;
   font-size: 24px;
   line-height: 1.21;
@@ -11,13 +11,13 @@
 }
 
 @media (max-width: 618px) {
-  .element__title {
+  .elements__title {
     max-width: 350px;
   }
 }
 
 @media (max-width: 396px) {
-  .element__title {
+  .elements__title {
     max-width: 210px;
   }
 }
