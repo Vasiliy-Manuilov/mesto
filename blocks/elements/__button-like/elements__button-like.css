@@ -9,4 +9,10 @@
   margin-left: auto;
   padding: 0;
   cursor: pointer;
+  transition: opacity 0.2s linear;
 }
+
+.elements__button-like:hover {
+  opacity: 0.5;
+}
+
