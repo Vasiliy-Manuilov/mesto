@@ -38,86 +38,7 @@
           ></button>
         </section>
         <section class="cards" aria-label="фотогалерея">
-          <ul class="elements">
-            <li class="elements__item">
-              <img
-                src="./images/elements/Karachaevo.jpg"
-                alt="Заброшенное здание цервки в горах Карачаевска"
-                class="elements__image"
-              />
-              <h2 class="elements__title">Карачаевск</h2>
-              <button
-                type="button"
-                class="elements__button-like"
-                title="Лайкнуть"
-              ></button>
-            </li>
-            <li class="elements__item">
-              <img
-                src="./images/elements/Elbrus.png"
-                alt="Плоскогорье у подножия Горы Эльбруса"
-                class="elements__image"
-              />
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button
-                type="button"
-                class="elements__button-like"
-                title="Лайкнуть"
-              ></button>
-            </li>
-            <li class="elements__item">
-              <img
-                src="./images/elements/Dombay.png"
-                alt="Вершины гор за лесистыми сопками"
-                class="elements__image"
-              />
-              <h2 class="elements__title">Домбай</h2>
-              <button
-                type="button"
-                class="elements__button-like"
-                title="Лайкнуть"
-              ></button>
-            </li>
-            <li class="elements__item">
-              <img
-                src="./images/elements/Elbrus.png"
-                alt="Плоскогорье у подножия Горы Эльбруса"
-                class="elements__image"
-              />
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button
-                type="button"
-                class="elements__button-like"
-                title="Лайкнуть"
-              ></button>
-            </li>
-            <li class="elements__item">
-              <img
-                src="./images/elements/Dombay.png"
-                alt="Вершины гор за лесистыми сопками"
-                class="elements__image"
-              />
-              <h2 class="elements__title">Домбай</h2>
-              <button
-                type="button"
-                class="elements__button-like"
-                title="Лайкнуть"
-              ></button>
-            </li>
-            <li class="elements__item">
-              <img
-                src="./images/elements/Karachaevo.jpg"
-                alt="Заброшенное здание цервки в горах Карачаевска"
-                class="elements__image"
-              />
-              <h2 class="elements__title">Карачаево-Черкесия</h2>
-              <button
-                type="button"
-                class="elements__button-like"
-                title="Лайкнуть"
-              ></button>
-            </li>
-          </ul>
+          <ul class="elements"></ul>
         </section>
       </main>
       <footer class="footer">
@@ -157,6 +78,17 @@
         </div>
       </div>
     </div>
+    <template id="elements__item-Template">
+      <li class="elements__item">
+        <img class="elements__image">
+        <h2 class="elements__title"></h2>
+        <button
+          type="button"
+          class="elements__button-like"
+          title="Лайкнуть"
+        ></button>
+      </li>
+    </template>
     <script defer src="./scripts/index.js"></script>
   </body>
 </html>
