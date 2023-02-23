@@ -75,10 +75,18 @@ function createItem (item) {
   buttonLike.addEventListener('click', function (evt) {
   evt.target.classList.toggle('elements__button-like_active');
   });
+  const buttonDelete = newItem.querySelector('.elements__btn-delete'); //доступ к кнопке удалить пункт списка
+  buttonDelete.addEventListener('click', buttonDeleteItem);
   elements.append(newItem); //вставить код в html список
 }
 
 initialCards.forEach(createItem); //перебираем массив, выполняем код для шаблона и добавляем в список
+
+function buttonDeleteItem (evt) {
+  const knopkaDelete = evt.target;
+  const item = knopkaDelete.closest('.elements__item');
+  item.remove();
+}
 
 openPopupButton.addEventListener('click', openPopup); //открываем попап
 closePopupButton.addEventListener('click', closePopup); //закрываем попап
