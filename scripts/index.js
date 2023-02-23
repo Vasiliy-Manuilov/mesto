@@ -62,7 +62,7 @@ function handleFormSubmit(evt) {
   closePopup();
 }
 
-//добавляем пункт в список
+//добавляем пункт карточки в список
 function createItem (item) {
   const newItem = document.querySelector('#elements__item-Template').content.cloneNode(true); //получаем содержимое шаблона и клонируем
   const itemImage = newItem.querySelector('.elements__image'); //получаем доступ к изображению в шаблоне
@@ -76,12 +76,13 @@ function createItem (item) {
   evt.target.classList.toggle('elements__button-like_active');
   });
   const buttonDelete = newItem.querySelector('.elements__btn-delete'); //доступ к кнопке удалить пункт списка
-  buttonDelete.addEventListener('click', buttonDeleteItem);
+  buttonDelete.addEventListener('click', buttonDeleteItem); //обработчки удаления пукта в списке
   elements.append(newItem); //вставить код в html список
 }
 
 initialCards.forEach(createItem); //перебираем массив, выполняем код для шаблона и добавляем в список
 
+// удаление пункта в списке
 function buttonDeleteItem (evt) {
   const knopkaDelete = evt.target;
   const item = knopkaDelete.closest('.elements__item');
