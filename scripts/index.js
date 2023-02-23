@@ -1,12 +1,15 @@
 const editPopup = document.querySelector('.popup'); //находим модальное окно для открытия
 const editClosePopup = document.querySelector('.popup'); //находим модальное окно для закрытия
 const openPopupButton = document.querySelector('.profile__edit-button'); //находим кнопку редактировать профиль
-const closePopupButton = document.querySelector('.popup__button-close'); //находим кнопку закрыть профиль
+const closePopupButton = document.querySelector('.popup__button-close'); //находим кнопку закрыть попап
+const openAddImagePopupButton = document.querySelector('.profile__add-button'); //находим кнопку добавить изображение
 let userName = document.querySelector('.profile__title'); //находим имя в профиле
 let jobName = document.querySelector('.profile__text'); //находим занятость в профиле
 let formElement = document.querySelector('.popup__form'); // Находим форму
 let nameInput = document.querySelector('.popup__input_type_name'); // Находим поле имя в форме
 let jobInput = document.querySelector('.popup__input_type_job'); // Находим поле занятость в форме
+let imageInput = document.querySelector('.popup__input_type_image'); // Находим поле название изображения в форме
+let urlInput = document.querySelector('.popup__input_type_url'); // Находим поле ссылка на картинку в форме
 const elements = document.querySelector('.elements'); //получаем доступ для добавления пункта в список
 
 const initialCards = [
@@ -89,7 +92,8 @@ function buttonDeleteItem (evt) {
   item.remove();
 }
 
-openPopupButton.addEventListener('click', openPopup); //открываем попап
+openPopupButton.addEventListener('click', openPopup); //открываем попап профиля
+openAddImagePopupButton.addEventListener('click', openPopup); //открываем попап добавить изображение
 closePopupButton.addEventListener('click', closePopup); //закрываем попап
 formElement.addEventListener('submit', handleFormSubmit); // Обработчик «отправки» формы
 

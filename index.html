@@ -77,6 +77,37 @@
           ></button>
         </div>
       </div>
+      <div class="popup krovosos">
+        <div class="popup__container">
+          <form class="popup__form" name="add-photo">
+            <h2 class="popup__title">Новое место</h2>
+            <fieldset class="popup__fieldset">
+              <input
+                class="popup__input popup__input_type_image"
+                type="text"
+                name="name-image"
+                placeholder="Название"
+                minlength="2"
+                maxlength="40"
+              />
+              <input
+                class="popup__input popup__input_type_url"
+                type="text"
+                name="url"
+                placeholder="Ссылка на картинку"
+              />
+            </fieldset>
+            <button class="popup__button-save" type="submit" title="Сохранить">
+              Создать
+            </button>
+          </form>
+          <button
+            class="popup__button-close"
+            type="button"
+            title="Закрыть"
+          ></button>
+        </div>
+      </div>
     </div>
     <template id="elements__item-Template">
       <li class="elements__item">
