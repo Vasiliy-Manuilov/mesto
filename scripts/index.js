@@ -14,10 +14,9 @@ const addImagePopup = document.querySelector('#popup-image');//доступ к �
 const сloseaddImagePopup = document.querySelector('#popup-image'); //доступ к удалению класса видимости попап добавить изображение
 const closePopupButtonImage = document.querySelector('#btn-close-addImage'); //кнопка закрыть попап добавить изображение
 let formImage = document.querySelector('.popup__form-image'); // Находим форму image
-//let imageInput = document.querySelector('.popup__input_type_heading'); // Находим поле название изображения в форме
-//let urlInput = document.querySelector('.popup__input_type_url'); // Находим поле ссылка на картинку в форме
-// Ниже переменные и массив для работы с карточками
-const elements = document.querySelector('.elements'); //получаем доступ для добавления пункта в список
+let headingInput = document.querySelector('.popup__input_type_heading'); // Находим поле название изображения в форме
+let imageInput = document.querySelector('.popup__input_type_url'); // Находим поле ссылка на картинку в форме
+let elements = document.querySelector('.elements'); //получаем доступ для добавления пункта в список
 
 const initialCards = [
   {
@@ -101,30 +100,33 @@ function createItem(item) {
   });
   const buttonDelete = newItem.querySelector('.elements__btn-delete'); //доступ к кнопке удалить пункт списка
   buttonDelete.addEventListener('click', buttonDeleteItem); //обработчки удаления пукта в списке
-  elements.append(newItem); //вставить код в html список
+
+  return newItem;
 }
 
-initialCards.forEach(createItem); //перебираем массив, выполняем код для шаблона и добавляем в список
+initialCards.forEach(item => {
+  elements.append(createItem(item));
+});
+ //перебираем массив, выполняем код для шаблона и добавляем в список
+//elements.append(newItem); //вставить код в html список
+
+//отправляем форму добавить изображение
+function imageFormSubmit(evt) {
+  evt.preventDefault();
+  const formImage = evt.target;
+  const newItem = createItem({
+    name: headingInput.value,
+    link: imageInput.value
+  });
+  elements.prepend(newItem);
+  closeAddImagePopup();
+}
 
 // удаление пункта в списке
 function buttonDeleteItem(evt) {
   const knopkaDelete = evt.target;
   const item = knopkaDelete.closest('.elements__item');
   item.remove();
-}
-
-//отправляем форму добавить изображение
-function imageFormSubmit(evt) {
-  evt.preventDefault();
-  const formImage = evt.target;
-  const heading = formImage.querySelector('.popup__input_type_heading').value;
-  const image = formImage.querySelector('.popup__input_type_url').value;
-  const newAddItem = {
-    name: heading,
-    link: image
-  }
-  createItem(newAddItem);
-  closeAddImagePopup();
 }
 
 openPopupButton.addEventListener('click', openPopup); //открываем попап профиля
