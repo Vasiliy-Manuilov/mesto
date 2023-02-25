@@ -44,7 +44,7 @@
       <footer class="footer">
         <p class="footer__copyright">© 2023 Mesto Russia</p>
       </footer>
-      <div id="popup-profile" class="popup">
+      <div class="popup popup_profile">
         <div class="popup__container">
           <form class="popup__form" name="edit-profile">
             <h2 class="popup__title">Редактировать профиль</h2>
@@ -71,14 +71,13 @@
             </button>
           </form>
           <button
-            id="btn-close-editProfile"
             class="popup__button-close"
             type="button"
             title="Закрыть"
           ></button>
         </div>
       </div>
-      <div id="popup-image" class="popup">
+      <div class="popup popup_image">
         <div class="popup__container">
           <form class="popup__form-image" name="add-photo">
             <h2 class="popup__title">Новое место</h2>
@@ -104,12 +103,18 @@
           </form>
           <button
             id="btn-close-addImage"
-            class="popup__button-close"
+            class="popup__button-close popup__button-close_theme_addImage"
             type="button"
             title="Закрыть"
           ></button>
         </div>
       </div>
+      <div class="popup popup_viewer">
+        <div class="popup__container">
+          <img class="popup__image" src="#" alt="#">
+          <h2 class="popup__heading"></h2>
+          <button class="popup__button-close popup__button-close_theme_viewer" type="button" title="Закрыть"></button>
+        </div>
     </div>
     <template id="elements__item-Template">
       <li class="elements__item">
