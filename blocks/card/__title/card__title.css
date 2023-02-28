@@ -12,12 +12,6 @@
 
 @media (max-width: 618px) {
   .card__title {
-    max-width: 350px;
-  }
-}
-
-@media (max-width: 396px) {
-  .card__title {
-    max-width: 210px;
+    max-width: 200px;
   }
 }
