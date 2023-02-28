@@ -3,9 +3,14 @@
   margin: 0 auto;
 }
 
-@media (max-width: 917px) {
+@media (max-width: 920px) {
   .footer {
-    max-width: 917px;
+    max-width: 581px;
+  }
+}
+
+@media (max-width: 620px) {
+  .footer {
     padding-left: 19px;
   }
 }

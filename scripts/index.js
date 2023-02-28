@@ -1,125 +1,107 @@
-//переменные для попап профиля
-const profilePopup = document.querySelector('.popup_profile'); //видимость попап
-const btnOpenProfilePopup = document.querySelector('.profile__edit-button'); //кнопка редактировать профиль
-const btnCloseProfilePopup = document.querySelector('.popup__button-close'); //кнопка закрыть попап профиля
-let userName = document.querySelector('.profile__title'); //имя в профиле
-let jobName = document.querySelector('.profile__text'); //занятость в профиле
-let formElement = document.querySelector('.popup__form'); //форма профиля
-let nameInput = document.querySelector('.popup__input_type_name'); //поле имя в форме попап
-let jobInput = document.querySelector('.popup__input_type_job'); //поле занятость в форме попап
+/** Редактирование профиля */
+const profilePopup = document.querySelector('.popup_type_profile');
+const popupEditProfile = document.querySelector('.profile__edit-button');
+const buttonCloseProfile = document.querySelector('.popup__button-close');
+const userName = document.querySelector('.profile__title');
+const jobName = document.querySelector('.profile__text');
+const formProfile = document.querySelector('.popup__form');
+const nameUserProfile = document.querySelector('.popup__input_type_name');
+const jobUserProfile = document.querySelector('.popup__input_type_job');
 
-//переменные для попап добавить изображение
-const addImagePopup = document.querySelector('.popup_image'); //доступ к добавлению видимости окна добавить изображение
-const btnOpenAddImagePopup = document.querySelector('.profile__add-button'); //кнопка добавить изображение
-const btncloseAddImagePopup = document.querySelector('.popup__button-close_addImage_close'); //кнопка закрыть попап добавить изображение
-let formImage = document.querySelector('.popup__form-image'); // Находим форму image
-let headingInput = document.querySelector('.popup__input_type_heading'); // поле название изображения в форме
-let imageInput = document.querySelector('.popup__input_type_url'); // поле ссылка на картинку в форме
-let elements = document.querySelector('.elements'); //получаем доступ для добавления карточки в список
+/** Добавить карточку */
+const popupAddCard = document.querySelector('.popup_type_image');
+const buttonAddCard = document.querySelector('.profile__add-button');
+const buttonCloseCard = document.querySelector('.popup__button-close_type_image');
+const formImage = document.querySelector('.popup__form-image');
+const headingCard = document.querySelector('.popup__input_type_heading');
+const urlCard = document.querySelector('.popup__input_type_url');
+const cardAddHtml = document.querySelector('.elements');
 
-//переменные для попап увеличить картинку
-const viewerPopup = document.querySelector('.popup_viewer'); //открытие попап увеличение карточки
-const btnCloseviewerPopup = document.querySelector('.popup__button-close_viewer_close'); //кнопка закрыть попап карточки
+/** Увеличить карточку */
+const popupCardViewer = document.querySelector('.popup_type_viewer');
+const buttonCloseViewer = document.querySelector('.popup__button-close_type_viewer');
+const imageViewer = document.querySelector('.popup__image');
+const headingViewer = document.querySelector('.popup__heading-image');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    alt: 'Тающий снег на вершине Архыза',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    alt: 'Изгиб русла реки',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    alt: 'Человейники',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    alt: 'равнина перед сопкой',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    alt: 'Железная дорога через лес',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    alt: 'Заледенелое побережье Байкала',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-];
-
-// открыть попап
+/** Открыть попап */
 function openPopup(addElement) {
   addElement.classList.add('popup_opened');
-  nameInput.value = userName.textContent; //Получаем значение заголовка из профиля
-  jobInput.value = jobName.textContent; //Получаем значения в занятость профиля
 }
 
-// скрыть popup
+/** Закрыть попап*/
 function closePopup(delElement) {
   delElement.classList.remove('popup_opened');
 }
 
-//отправляем форму попап профиля
-function handleFormSubmit(evt) {
+/** Отправить форму попап профиля*/
+function handleSubmitProfileForm(evt) {
   evt.preventDefault();
-  userName.textContent = nameInput.value; //Получаем значение поля имени и вставляем измененные значения в заголовок профиля
-  jobName.textContent = jobInput.value; //Получаем значение поля имени и вставляем измененные значения в занятость профиля
+  userName.textContent = nameUserProfile.value;
+  jobName.textContent = jobUserProfile.value;
   closePopup(profilePopup);
 }
 
-//добавить изображение в список по шаблону
+/** создать объект по шаблону*/
 function createCard(card) {
-  const newCard = document.querySelector('#elements__item-Template').content.cloneNode(true); //получаем содержимое шаблона и клонируем
-
-  newCard.querySelector('.elements__image').src = card.link; //ссылка на изображение
-  newCard.querySelector('.elements__image').alt = card.alt;//алт для изображения
-  newCard.querySelector('.elements__title').textContent = card.name; //заголовок в шаблоне
-
-  newCard.querySelector('.elements__btn-delete').addEventListener('click', (evt) => {evt.target.closest('.elements__item').remove()}); //удаление изображения
-  newCard.querySelector('.elements__button-like').addEventListener('click', (evt) => {evt.target.classList.toggle('elements__button-like_active')}); //кнопка лайк
-  newCard.querySelector('.elements__image').addEventListener('click', () => openViewerCardPopup(card)); //при нажатии вызывает функцию просмотра
+  const newCard = document.querySelector('#cardTemplate').content.cloneNode(true);
+  const imageCard = newCard.querySelector('.card__image');
+  imageCard.src = card.link;
+  imageCard.alt = card.alt;
+  newCard.querySelector('.card__title').textContent = card.name;
+  newCard.querySelector('.card__btn-delete').addEventListener('click', deleteCard);
+  newCard.querySelector('.card__button-like').addEventListener('click', putLike);
+  imageCard.addEventListener('click', () => enlargeCard(card));
 
   return newCard;
 }
 
-//перебираем массив, выполняем код для шаблона и добавляем в список
+/** перебираем массив, берём значения для шаблона и добавляем в html*/
 initialCards.forEach((card) => {
-  elements.append(createCard(card));
+  cardAddHtml.append(createCard(card));
 });
 
-//отправить форму добавить изображение
-function imageFormSubmit(evt) {
+/** Форма Добавить карточку */
+function handleSubmitImageForm(evt) {
   evt.preventDefault();
   const newCard = createCard({
-    name: headingInput.value,
-    link: imageInput.value,
+    name: headingCard.value,
+    link: urlCard.value,
   });
-  elements.prepend(newCard);
-  headingInput.value = '';
-  imageInput.value = '';
-  closePopup(addImagePopup);
+  cardAddHtml.prepend(newCard);
+  headingCard.value = '';
+  urlCard.value = '';
+  closePopup(popupAddCard);
 }
 
-//Увеличение изображение при клике
-function openViewerCardPopup(card) {
-  viewerPopup.querySelector('.popup__image').src = card.link; //передаём ссылку на изображение
-  viewerPopup.querySelector('.popup__heading-image').textContent = card.name; //передаём заголовок из шаблона
-
-  openPopup(viewerPopup);
+/** Увеличить карточку */
+function enlargeCard(card) {
+  imageViewer.src = card.link;
+  imageViewer.alt = card.alt;
+  headingViewer.textContent = card.name;
+  openPopup(popupCardViewer);
 }
 
-btnOpenProfilePopup.addEventListener('click', () => openPopup(profilePopup)); //открываем попап профиля
-btnCloseProfilePopup.addEventListener('click', () => closePopup(profilePopup)); //закрываем попап профиля
-btnOpenAddImagePopup.addEventListener('click', () => openPopup(addImagePopup)); //открываем попап добавить изображение
-btncloseAddImagePopup.addEventListener('click', () => closePopup(addImagePopup)); //закрываем попап добавить изображение
-btnCloseviewerPopup.addEventListener('click', () => closePopup(viewerPopup));// закрываем попап карточки
+/** Лайкнуть */
+function putLike(evt) {
+  evt.target.classList.toggle('card__button-like_active');
+}
 
-formElement.addEventListener('submit', handleFormSubmit); // Обработчик «отправки» формы
-formImage.addEventListener('submit', imageFormSubmit); // Обработчик «отправки» формы add-image
+/** Удалить карточку */
+function deleteCard(evt) {
+  evt.target.closest('.card').remove();
+}
+
+/** Обработчики кнопок */
+popupEditProfile.addEventListener('click', () => {
+  nameUserProfile.value = userName.textContent;
+  jobUserProfile.value = jobName.textContent;
+  openPopup(profilePopup)
+});
+
+buttonCloseProfile.addEventListener('click', () => closePopup(profilePopup));
+buttonAddCard.addEventListener('click', () => openPopup(popupAddCard));
+buttonCloseCard.addEventListener('click', () => closePopup(popupAddCard));
+buttonCloseViewer.addEventListener('click', () => closePopup(popupCardViewer));
+
+formProfile.addEventListener('submit', handleSubmitProfileForm);
+formImage.addEventListener('submit', handleSubmitImageForm);

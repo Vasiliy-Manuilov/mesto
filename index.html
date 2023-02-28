@@ -44,7 +44,7 @@
       <footer class="footer">
         <p class="footer__copyright">© 2023 Mesto Russia</p>
       </footer>
-      <div class="popup popup_profile">
+      <div class="popup popup_type_profile">
         <div class="popup__container">
           <form class="popup__form" name="edit-profile">
             <h2 class="popup__title">Редактировать профиль</h2>
@@ -56,6 +56,7 @@
                 placeholder="Имя"
                 minlength="2"
                 maxlength="40"
+                required
               />
               <input
                 class="popup__input popup__input_type_job"
@@ -64,6 +65,7 @@
                 placeholder="Занятость"
                 minlength="2"
                 maxlength="40"
+                required
               />
             </fieldset>
             <button class="popup__button-save" type="submit" title="Сохранить">
@@ -77,7 +79,7 @@
           ></button>
         </div>
       </div>
-      <div class="popup popup_image">
+      <div class="popup popup_type_image">
         <div class="popup__container">
           <form class="popup__form-image" name="add-photo">
             <h2 class="popup__title">Новое место</h2>
@@ -89,12 +91,14 @@
                 placeholder="Название"
                 minlength="2"
                 maxlength="40"
+                required
               />
               <input
                 class="popup__input popup__input_type_url"
                 type="text"
                 name="url"
                 placeholder="Ссылка на картинку"
+                required
               />
             </fieldset>
             <button class="popup__button-save" type="submit" title="Создать">
@@ -102,41 +106,41 @@
             </button>
           </form>
           <button
-            id="btn-close-addImage"
-            class="popup__button-close popup__button-close_addImage_close"
+            class="popup__button-close popup__button-close_type_image"
             type="button"
             title="Закрыть"
           ></button>
         </div>
       </div>
-      <div class="popup popup_viewer">
+      <div class="popup popup_type_viewer">
         <div class="popup__container-image">
           <img class="popup__image" src="#" alt="#" />
           <h2 class="popup__heading-image">Название</h2>
           <button
-            class="popup__button-close popup__button-close_viewer_close"
+            class="popup__button-close popup__button-close_type_viewer"
             type="button"
             title="Закрыть"
           ></button>
         </div>
       </div>
     </div>
-    <template id="elements__item-Template">
-      <li class="elements__item">
-        <img class="elements__image" />
+    <template id="cardTemplate">
+      <li class="card">
+        <img class="card__image" />
         <button
           type="button"
-          class="elements__btn-delete"
+          class="card__btn-delete"
           title="Удалить"
         ></button>
-        <h2 class="elements__title"></h2>
+        <h2 class="card__title"></h2>
         <button
           type="button"
-          class="elements__button-like"
+          class="card__button-like"
           title="Лайкнуть"
         ></button>
       </li>
     </template>
+    <script defer src="./scripts/cards.js"></script>
     <script defer src="./scripts/index.js"></script>
   </body>
 </html>

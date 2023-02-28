@@ -1,4 +1,4 @@
-.elements__item {
+.card {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;

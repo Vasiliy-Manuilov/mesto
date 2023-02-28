@@ -5,8 +5,9 @@
   border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
-@media (max-width: 917px) {
+@media (max-width: 920px) {
   .header {
+    max-width: 527px;
     padding: 28px 27px 27px;
   }
 }

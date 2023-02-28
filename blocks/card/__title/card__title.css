@@ -1,4 +1,4 @@
-.elements__title {
+.card__title {
   color: #000;
   font-size: 24px;
   line-height: 1.21;
@@ -11,13 +11,13 @@
 }
 
 @media (max-width: 618px) {
-  .elements__title {
+  .card__title {
     max-width: 350px;
   }
 }
 
 @media (max-width: 396px) {
-  .elements__title {
+  .card__title {
     max-width: 210px;
   }
 }
