@@ -11,7 +11,9 @@ const jobUserProfile = document.querySelector('.popup__input_type_job');
 /** Добавить карточку */
 const popupAddCard = document.querySelector('.popup_type_image');
 const buttonAddCard = document.querySelector('.profile__add-button');
-const buttonCloseCard = document.querySelector('.popup__button-close_type_image');
+const buttonCloseCard = document.querySelector(
+  '.popup__button-close_type_image'
+);
 const formImage = document.querySelector('.popup__form-image');
 const headingCard = document.querySelector('.popup__input_type_heading');
 const urlCard = document.querySelector('.popup__input_type_url');
@@ -19,7 +21,9 @@ const cardAddHtml = document.querySelector('.elements');
 
 /** Увеличить карточку */
 const popupCardViewer = document.querySelector('.popup_type_viewer');
-const buttonCloseViewer = document.querySelector('.popup__button-close_type_viewer');
+const buttonCloseViewer = document.querySelector(
+  '.popup__button-close_type_viewer'
+);
 const imageViewer = document.querySelector('.popup__image');
 const headingViewer = document.querySelector('.popup__heading-image');
 
@@ -43,13 +47,19 @@ function handleSubmitProfileForm(evt) {
 
 /** создать объект по шаблону*/
 function createCard(card) {
-  const newCard = document.querySelector('#cardTemplate').content.cloneNode(true);
+  const newCard = document
+    .querySelector('#cardTemplate')
+    .content.cloneNode(true);
   const imageCard = newCard.querySelector('.card__image');
   imageCard.src = card.link;
   imageCard.alt = card.alt;
   newCard.querySelector('.card__title').textContent = card.name;
-  newCard.querySelector('.card__btn-delete').addEventListener('click', deleteCard);
-  newCard.querySelector('.card__button-like').addEventListener('click', putLike);
+  newCard
+    .querySelector('.card__btn-delete')
+    .addEventListener('click', deleteCard);
+  newCard
+    .querySelector('.card__button-like')
+    .addEventListener('click', putLike);
   imageCard.addEventListener('click', () => enlargeCard(card));
 
   return newCard;
@@ -95,7 +105,7 @@ function deleteCard(evt) {
 popupEditProfile.addEventListener('click', () => {
   nameUserProfile.value = userName.textContent;
   jobUserProfile.value = jobName.textContent;
-  openPopup(profilePopup)
+  openPopup(profilePopup);
 });
 
 buttonCloseProfile.addEventListener('click', () => closePopup(profilePopup));
