@@ -46,11 +46,11 @@
       </footer>
       <div class="popup popup_type_profile">
         <div class="popup__container">
-          <form class="popup__form" name="edit-profile">
+          <form class="popup__form" name="profile" novalidate>
             <h2 class="popup__title">Редактировать профиль</h2>
             <fieldset class="popup__fieldset">
               <input
-                class="popup__input popup__input_type_name"
+                class="popup__input"
                 type="text"
                 name="name"
                 placeholder="Имя"
@@ -58,8 +58,9 @@
                 maxlength="40"
                 required
               />
+              <span class="popup__input-error popup__input-error_type_name"></span>
               <input
-                class="popup__input popup__input_type_job"
+                class="popup__input"
                 type="text"
                 name="job"
                 placeholder="Занятость"
@@ -67,6 +68,7 @@
                 maxlength="200"
                 required
               />
+              <span class="popup__input-error popup__input-error_type_job"></span>
             </fieldset>
             <button class="popup__button-save" type="submit" title="Сохранить">
               Сохранить
@@ -81,11 +83,11 @@
       </div>
       <div class="popup popup_type_image">
         <div class="popup__container">
-          <form class="popup__form-image" name="add-photo">
+          <form class="popup__form" name="card" novalidate>
             <h2 class="popup__title">Новое место</h2>
             <fieldset class="popup__fieldset">
               <input
-                class="popup__input popup__input_type_heading"
+                class="popup__input"
                 type="text"
                 name="name-image"
                 placeholder="Название"
@@ -93,13 +95,15 @@
                 maxlength="30"
                 required
               />
+              <span class="popup__input-error popup__input-error_type_name-image"></span>
               <input
-                class="popup__input popup__input_type_url"
+                class="popup__input"
                 type="url"
                 name="url"
                 placeholder="Ссылка на картинку"
                 required
               />
+              <span class="popup__input-error popup__input-error_type_url"></span>
             </fieldset>
             <button class="popup__button-save" type="submit" title="Создать">
               Создать
