@@ -1,41 +1,77 @@
-const showInputError = (errorTextElement, validationMessage, errorClass, inputErrorClass) => {
+const showInputError = (
+  input,
+  errorTextElement,
+  validationMessage,
+  errorClass,
+  inputErrorClass
+) => {
   errorTextElement.textContent = validationMessage;
   errorTextElement.classList.add(errorClass);
-  // input.classList.add(inputErrorClass);
-}
+  input.classList.add(inputErrorClass);
+};
 
-const hideInputError = (errorTextElement, errorClass) => {
+const hideInputError = (input, errorTextElement, errorClass, inputErrorClass) => {
   errorTextElement.classList.remove(errorClass);
-  errorTextElement.textContent = "";
-}
+  errorTextElement.textContent = '';
+  input.classList.remove(inputErrorClass);
+};
 
-const checkInputValidity = (input, errorClassTemplate, errorClass, inputErrorClass) => {
-  const errorTextElement = document.querySelector(`${errorClassTemplate}${input.name}`);
-  // console.log(errorTextElement);
-if (!input.validity.valid) {
-  showInputError(errorTextElement, input.validationMessage, errorClass, inputErrorClass);
-// console.log('инпут валиден');
-} else {
-  hideInputError(errorTextElement);
-  // console.log('что-то пошло не так');
-}
-}
+const checkInputValidity = (
+  input,
+  errorClassTemplate,
+  errorClass,
+  inputErrorClass
+) => {
+  const errorTextElement = document.querySelector(
+    `${errorClassTemplate}${input.name}`
+  );
+  if (!input.validity.valid) {
+    showInputError(
+      input,
+      errorTextElement,
+      input.validationMessage,
+      errorClass,
+      inputErrorClass
+    );
+  } else {
+    hideInputError(input, errorTextElement, errorClass, inputErrorClass);
+  }
+};
 
-const setEventListeners = (formList, config, errorClassTemplate, errorClass, inputErrorClass) => {
+const setEventListeners = (
+  formList,
+  config,
+  errorClassTemplate,
+  errorClass,
+  inputErrorClass
+) => {
   formList.forEach((formElement) => {
-    const inputlist = Array.from(formElement.querySelectorAll(config.inputSelector));
+    const inputlist = Array.from(
+      formElement.querySelectorAll(config.inputSelector)
+    );
     inputlist.forEach((input) => {
       input.addEventListener('input', (evt) => {
-        checkInputValidity(input, errorClassTemplate, errorClass, inputErrorClass);
+        checkInputValidity(
+          input,
+          errorClassTemplate,
+          errorClass,
+          inputErrorClass
+        );
       });
     });
   });
-}
+};
 
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
-  setEventListeners(formList, config, config.errorClassTemplate, config.errorClass, config.inputErrorClass);
-}
+  setEventListeners(
+    formList,
+    config,
+    config.errorClassTemplate,
+    config.errorClass,
+    config.inputErrorClass
+  );
+};
 
 enableValidation({
   formSelector: '.popup__form', //форма
@@ -46,5 +82,3 @@ enableValidation({
   errorClass: 'popup__input-error_visible', //показ текстовой ошибки
   errorClassTemplate: '.popup__input-error_type_'
 });
-
-
