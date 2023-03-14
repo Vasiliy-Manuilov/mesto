@@ -38,6 +38,10 @@ const checkInputValidity = (
   }
 };
 
+// const toggleButtonState = (submitButton) => {
+//   console.log(submitButton);
+// }
+
 const setEventListeners = (
   formList,
   config,
