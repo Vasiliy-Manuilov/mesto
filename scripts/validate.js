@@ -16,6 +16,16 @@ const hideInputError = (input, errorTextElement, errorClass, inputErrorClass) =>
   input.classList.remove(inputErrorClass);
 };
 
+const disableButton = (submitButton, inactiveButtonClass) => {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = true;
+}
+
+const anableButton = (submitButton, inactiveButtonClass) => {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = false;
+}
+
 const checkInputValidity = (
   input,
   errorClassTemplate,
@@ -38,21 +48,32 @@ const checkInputValidity = (
   }
 };
 
-// const toggleButtonState = (submitButton) => {
-//   console.log(submitButton);
-// }
+const hasInvalidInput = (inputlist) => {
+  return Array.from(inputlist).every((input) => input.validity.valid);
+}
+
+const toggleButtonState = (submitButton, inactiveButtonClass, inputlist) => {
+  if (!hasInvalidInput(inputlist)) {
+    anableButton(submitButton, inactiveButtonClass);
+  } else {
+    disableButton(submitButton, inactiveButtonClass);
+  }
+}
 
 const setEventListeners = (
   formList,
   config,
   errorClassTemplate,
   errorClass,
-  inputErrorClass
+  inputErrorClass,
+  inactiveButtonClass
 ) => {
   formList.forEach((formElement) => {
     const inputlist = Array.from(
       formElement.querySelectorAll(config.inputSelector)
     );
+    const submitButton = formElement.querySelector(config.submitButtonSelector);
+    toggleButtonState(submitButton, inactiveButtonClass, inputlist);
     inputlist.forEach((input) => {
       input.addEventListener('input', (evt) => {
         checkInputValidity(
@@ -61,6 +82,7 @@ const setEventListeners = (
           errorClass,
           inputErrorClass
         );
+        toggleButtonState(submitButton, inactiveButtonClass, inputlist);
       });
     });
   });
@@ -73,16 +95,17 @@ const enableValidation = (config) => {
     config,
     config.errorClassTemplate,
     config.errorClass,
-    config.inputErrorClass
+    config.inputErrorClass,
+    config.inactiveButtonClass
   );
 };
 
 enableValidation({
-  formSelector: '.popup__form', //форма
-  inputSelector: '.popup__input', //инпут
-  submitButtonSelector: '.popup__button-save', //кнопка сохранить
-  inactiveButtonClass: 'popup__button-save_disabled', //не активаная кнопка сохранить
-  inputErrorClass: 'popup__input_type_error', //красная линия у инпута
-  errorClass: 'popup__input-error_visible', //показ текстовой ошибки
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible',
   errorClassTemplate: '.popup__input-error_type_'
 });
