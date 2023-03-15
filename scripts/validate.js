@@ -5,7 +5,7 @@ const validationConfig = {
   inactiveButtonClass: 'popup__button-save_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible',
-  errorClassTemplate: '.popup__input-error_type_',
+  errorClassTemplate: '.popup__input-error_type_'
 };
 
 const showInputError = (
@@ -31,12 +31,12 @@ const hideInputError = (
   input.classList.remove(inputErrorClass);
 };
 
-const disableButton = (submitButton, inactiveButtonClass) => {
+const anableButton = (submitButton, inactiveButtonClass) => {
   submitButton.classList.remove(inactiveButtonClass);
   submitButton.disabled = false;
 };
 
-const anableButton = (submitButton, inactiveButtonClass) => {
+const disableButton = (submitButton, inactiveButtonClass) => {
   submitButton.classList.add(inactiveButtonClass);
   submitButton.disabled = true;
 };
@@ -68,7 +68,7 @@ const hasInvalidInput = (inputlist) => {
 };
 
 const toggleButtonState = (submitButton, inactiveButtonClass, inputlist) => {
-  if (!hasInvalidInput(inputlist)) {
+  if (hasInvalidInput(inputlist)) {
     anableButton(submitButton, inactiveButtonClass);
   } else {
     disableButton(submitButton, inactiveButtonClass);

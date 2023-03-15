@@ -16,6 +16,8 @@ const submitCard = popupAddCard.querySelector('.popup__form');
 const headingCard = popupAddCard.querySelector('[name="name-image"]');
 const urlCard = popupAddCard.querySelector('[name="url"]');
 const cardAddHtml = document.querySelector('.elements');
+const submitButton = popupAddCard.querySelector('.popup__button-save');
+const inactiveButtonClass = validationConfig.inactiveButtonClass;
 
 /** Увеличить карточку */
 const popupCardViewer = document.querySelector('.popup_type_viewer');
@@ -83,7 +85,9 @@ function handleSubmitImageForm(evt) {
     link: urlCard.value,
   });
   cardAddHtml.prepend(newCard);
-  evt.target.reset();
+  disableButton(submitButton, inactiveButtonClass);
+  // evt.target.reset();
+  submitCard.reset();
   closePopup(popupAddCard);
 }
 
