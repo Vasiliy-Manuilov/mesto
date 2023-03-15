@@ -83,8 +83,6 @@ function handleSubmitImageForm(evt) {
     link: urlCard.value,
   });
   cardAddHtml.prepend(newCard);
-  // headingCard.value = '';
-  // urlCard.value = '';
   evt.target.reset();
   closePopup(popupAddCard);
 }
