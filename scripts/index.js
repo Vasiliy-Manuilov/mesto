@@ -8,6 +8,7 @@ const profilePopup = document.querySelector('.popup_type_profile');
 const submitProfile = profilePopup.querySelector('.popup__form');
 const nameUserProfile = profilePopup.querySelector('[name="name"]');
 const jobUserProfile = profilePopup.querySelector('[name="job"]');
+const cleanProfileinput = submitProfile;
 
 /** Добавить карточку */
 const popupAddCard = document.querySelector('.popup_type_image');
@@ -18,6 +19,7 @@ const urlCard = popupAddCard.querySelector('[name="url"]');
 const cardAddHtml = document.querySelector('.elements');
 const submitButton = popupAddCard.querySelector('.popup__button-save');
 const inactiveButtonClass = validationConfig.inactiveButtonClass;
+const cleanCardinput = submitCard;
 
 /** Увеличить карточку */
 const popupCardViewer = document.querySelector('.popup_type_viewer');
@@ -86,7 +88,6 @@ function handleSubmitImageForm(evt) {
   });
   cardAddHtml.prepend(newCard);
   disableButton(submitButton, inactiveButtonClass);
-  // evt.target.reset();
   submitCard.reset();
   closePopup(popupAddCard);
 }
@@ -126,9 +127,14 @@ popupEditProfile.addEventListener('click', () => {
   nameUserProfile.value = userName.textContent;
   jobUserProfile.value = jobName.textContent;
   openPopup(profilePopup);
+  hideFormErrors(cleanProfileinput, validationConfig);
 });
 
-buttonAddCard.addEventListener('click', () => openPopup(popupAddCard));
+buttonAddCard.addEventListener('click', () => {
+  submitCard.reset();
+  openPopup(popupAddCard);
+  hideFormErrors(cleanCardinput, validationConfig);
+});
 
 submitProfile.addEventListener('submit', handleSubmitProfileForm);
 submitCard.addEventListener('submit', handleSubmitImageForm);

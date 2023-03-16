@@ -5,7 +5,7 @@ const validationConfig = {
   inactiveButtonClass: 'popup__button-save_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible',
-  errorClassTemplate: '.popup__input-error_type_'
+  errorClassTemplate: '.popup__input-error_type_',
 };
 
 const showInputError = (
@@ -113,6 +113,21 @@ const enableValidation = (config) => {
     config.inputErrorClass,
     config.inactiveButtonClass
   );
+};
+
+const hideFormErrors = (form, config) => {
+  const inputlist = Array.from(form.querySelectorAll(config.inputSelector));
+  inputlist.forEach((input) => {
+    const errorTextElement = document.querySelector(
+      `${config.errorClassTemplate}${input.name}`
+    );
+    hideInputError(
+      input,
+      errorTextElement,
+      config.errorClass,
+      config.inputErrorClass
+    );
+  });
 };
 
 enableValidation(validationConfig);
