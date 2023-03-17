@@ -57,7 +57,7 @@ function handleSubmitProfileForm(evt) {
 
 /** создать объект по шаблону*/
 function createCard(card) {
-  newCard = templateCard.cloneNode(true);
+  const newCard = templateCard.cloneNode(true);
   const imageCard = newCard.querySelector('.card__image');
   imageCard.src = card.link;
   imageCard.alt = card.alt;
