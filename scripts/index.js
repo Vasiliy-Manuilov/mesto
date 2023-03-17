@@ -20,6 +20,7 @@ const cardAddHtml = document.querySelector('.elements');
 const submitButton = popupAddCard.querySelector('.popup__button-save');
 const inactiveButtonClass = validationConfig.inactiveButtonClass;
 const cleanCardinput = submitCard;
+const templateCard = document.querySelector('#cardTemplate').content;
 
 /** Увеличить карточку */
 const popupCardViewer = document.querySelector('.popup_type_viewer');
@@ -56,9 +57,7 @@ function handleSubmitProfileForm(evt) {
 
 /** создать объект по шаблону*/
 function createCard(card) {
-  const newCard = document
-    .querySelector('#cardTemplate')
-    .content.cloneNode(true);
+  newCard = templateCard.cloneNode(true);
   const imageCard = newCard.querySelector('.card__image');
   imageCard.src = card.link;
   imageCard.alt = card.alt;
