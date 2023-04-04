@@ -1,3 +1,7 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import { initialCards, validationConfig } from './initialData.js';
+
 const popups = Array.from(document.querySelectorAll('.popup'));
 
 /** Редактирование профиля */
@@ -8,7 +12,11 @@ const profilePopup = document.querySelector('.popup_type_profile');
 const submitProfile = profilePopup.querySelector('.popup__form');
 const nameUserProfile = profilePopup.querySelector('[name="name"]');
 const jobUserProfile = profilePopup.querySelector('[name="job"]');
-const cleanProfileinput = submitProfile;
+const popupEditFormValidator = new FormValidator(
+  validationConfig,
+  submitProfile
+);
+popupEditFormValidator.enableValidation();
 
 /** Добавить карточку */
 const popupAddCard = document.querySelector('.popup_type_image');
@@ -17,10 +25,8 @@ const submitCard = popupAddCard.querySelector('.popup__form');
 const headingCard = popupAddCard.querySelector('[name="name-image"]');
 const urlCard = popupAddCard.querySelector('[name="url"]');
 const cardAddHtml = document.querySelector('.elements');
-const submitButton = popupAddCard.querySelector('.popup__button-save');
-const inactiveButtonClass = validationConfig.inactiveButtonClass;
-const cleanCardinput = submitCard;
-const templateCard = document.querySelector('#cardTemplate').content;
+const popupAddFormValidator = new FormValidator(validationConfig, submitCard);
+popupAddFormValidator.enableValidation();
 
 /** Увеличить карточку */
 const popupCardViewer = document.querySelector('.popup_type_viewer');
@@ -56,21 +62,9 @@ function handleSubmitProfileForm(evt) {
 }
 
 /** создать объект по шаблону*/
-function createCard(card) {
-  const newCard = templateCard.cloneNode(true);
-  const imageCard = newCard.querySelector('.card__image');
-  imageCard.src = card.link;
-  imageCard.alt = card.alt;
-  newCard.querySelector('.card__title').textContent = card.name;
-  newCard
-    .querySelector('.card__btn-delete')
-    .addEventListener('click', deleteCard);
-  newCard
-    .querySelector('.card__button-like')
-    .addEventListener('click', putLike);
-  imageCard.addEventListener('click', () => enlargeCard(card));
-
-  return newCard;
+function createCard(data) {
+  const card = new Card(data, '#cardTemplate', enlargeCard);
+  return card.generateCard();
 }
 
 /** перебираем массив, берём значения для шаблона и добавляем в html*/
@@ -81,32 +75,22 @@ initialCards.forEach((card) => {
 /** Форма Добавить карточку */
 function handleSubmitImageForm(evt) {
   evt.preventDefault();
-  const newCard = createCard({
+  const cardElement = createCard({
     name: headingCard.value,
     link: urlCard.value,
   });
-  cardAddHtml.prepend(newCard);
-  disableButton(submitButton, inactiveButtonClass);
+  cardAddHtml.prepend(cardElement);
+  popupAddFormValidator.disableButton();
   submitCard.reset();
   closePopup(popupAddCard);
 }
 
-/** Увеличить карточку */
-function enlargeCard(card) {
-  imageViewer.src = card.link;
-  imageViewer.alt = card.alt;
-  headingViewer.textContent = card.name;
+// /** Увеличить карточку */
+function enlargeCard(link, alt, name) {
+  imageViewer.src = link;
+  imageViewer.alt = alt;
+  headingViewer.textContent = name;
   openPopup(popupCardViewer);
-}
-
-/** Лайкнуть */
-function putLike(evt) {
-  evt.target.classList.toggle('card__button-like_active');
-}
-
-/** Удалить карточку */
-function deleteCard(evt) {
-  evt.target.closest('.card').remove();
 }
 
 /** Закрыть по кнопке и кликом по оверлей*/
@@ -126,13 +110,13 @@ popupEditProfile.addEventListener('click', () => {
   nameUserProfile.value = userName.textContent;
   jobUserProfile.value = jobName.textContent;
   openPopup(profilePopup);
-  hideFormErrors(cleanProfileinput, validationConfig);
+  popupEditFormValidator.resetFormErrors();
 });
 
 buttonAddCard.addEventListener('click', () => {
   submitCard.reset();
   openPopup(popupAddCard);
-  hideFormErrors(cleanCardinput, validationConfig);
+  popupAddFormValidator.resetFormErrors();
 });
 
 submitProfile.addEventListener('submit', handleSubmitProfileForm);
