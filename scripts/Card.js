@@ -29,10 +29,10 @@ export default class Card {
 
   _setEventListeners() {
     this._cardLike.addEventListener('click', () => {
-      this._putLike(this._cardElement);
+      this._putLike();
     });
     this._cardBasket.addEventListener('click', () => {
-      this._deleteCard(this._cardElement);
+      this._deleteCard();
     });
     this._imageCard.addEventListener('click', () => {
       this._enlargeCard(this._link, this._alt, this._name);
@@ -45,5 +45,6 @@ export default class Card {
 
   _deleteCard() {
     this._cardElement.remove();
+    this. _cardElement = null;
   }
 }
