@@ -1,10 +1,10 @@
 export default class Card {
-  constructor(data, templateSelector, enlargeCard) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
     this._templateSelector = templateSelector;
-    this._enlargeCard = enlargeCard;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -35,7 +35,7 @@ export default class Card {
       this._deleteCard();
     });
     this._imageCard.addEventListener('click', () => {
-      this._enlargeCard(this._link, this._alt, this._name);
+      this._handleCardClick(this._name, this._link, this._alt);
     });
   }
 
@@ -45,6 +45,6 @@ export default class Card {
 
   _deleteCard() {
     this._cardElement.remove();
-    this. _cardElement = null;
+    this._cardElement = null;
   }
 }

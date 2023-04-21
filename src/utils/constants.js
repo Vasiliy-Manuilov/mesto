@@ -40,3 +40,23 @@ export const validationConfig = {
   errorClass: 'popup__input-error_visible',
   errorClassTemplate: '.popup__input-error_type_',
 };
+
+/** Добавить карточку */
+export const cardAddHtml = '.elements';
+
+/** Увеличить карточку */
+export const popupCardViewer = '.popup_type_viewer';
+
+/** Редактирование профиля */
+export const buttonEditProfile = document.querySelector('.profile__edit-button');
+export const profileTitle = '.profile__title';
+export const profileOccupation = '.profile__text';
+export const popupProfile = '.popup_type_profile';
+export const formProfile = document.forms.profile;
+export const nameUserProfile = document.querySelector('[name="name"]');
+export const occupationUserProfile = document.querySelector('[name="occupation"]');
+
+// /** Добавить карточку */
+export const popupAddImage = '.popup_type_image';
+export const buttonAddCard = document.querySelector('.profile__add-button');
+export const formCard = document.forms.card;
