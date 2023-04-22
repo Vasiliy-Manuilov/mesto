@@ -14,8 +14,6 @@ import {
   profileOccupation,
   popupProfile,
   formProfile,
-  nameUserProfile,
-  occupationUserProfile,
   popupAddImage,
   buttonAddCard,
   formCard,
@@ -41,9 +39,8 @@ const popupEditProfile = new PopupWithForm(popupProfile, {
 popupEditProfile.setEventListeners();
 
 buttonEditProfile.addEventListener('click', () => {
-  const inputData = userInfoProfile.getUserInfo();
-  nameUserProfile.value = inputData.name;
-  occupationUserProfile.value = inputData.occupation;
+  const inputData = userInfoProfile.getUserInfo();;
+  popupEditProfile.setInputValues(inputData);
   popupEditFormValidator.resetFormErrors();
   popupEditProfile.open();
 });
