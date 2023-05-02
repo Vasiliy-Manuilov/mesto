@@ -16,11 +16,17 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img
-          src="<%=require('./images/profile/avatar.jpg')%>"
-          alt="Аватар пользователя"
-          class="profile__image"
-        />
+        <button
+          class="profile__avatar-edit"
+          type="button"
+          title="Редактировать аватар"
+        >
+          <img
+            src="<%=require('./images/profile/avatar.jpg')%>"
+            alt="Аватар пользователя"
+            class="profile__image"
+          />
+        </button>
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button
@@ -134,16 +140,59 @@
         ></button>
       </div>
     </div>
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <form class="popup__form" name="avatar" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input
+            class="popup__input"
+            type="url"
+            name="url"
+            placeholder="Ссылка на аватар"
+            required
+          />
+          <span class="popup__input-error popup__input-error_type_url"></span>
+          <button class="popup__button-save" type="submit" title="Сохранить">
+            Сохранить
+          </button>
+        </form>
+        <button
+          class="popup__button-close"
+          type="button"
+          title="Закрыть"
+        ></button>
+      </div>
+    </div>
+    <div class="popup popup_type_confirm">
+      <div class="popup__container">
+        <form class="popup__form" name="confirm" novalidate>
+          <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+          <button class="popup__button-save" type="submit" title="Подтвердить">
+            Да
+          </button>
+        </form>
+        <button
+          class="popup__button-close"
+          type="button"
+          title="Закрыть"
+        ></button>
+      </div>
+    </div>
     <template id="cardTemplate">
       <li class="card">
         <img class="card__image" />
         <button type="button" class="card__btn-delete" title="Удалить"></button>
-        <h2 class="card__title"></h2>
-        <button
-          type="button"
-          class="card__button-like"
-          title="Лайкнуть"
-        ></button>
+        <div class="card__info">
+          <h2 class="card__title"></h2>
+          <div class="card__like-container">
+            <button
+              type="button"
+              class="card__button-like"
+              title="Лайкнуть"
+            ></button>
+            <p class="card__like-count">0</p>
+          </div>
+        </div>
       </li>
     </template>
   </body>

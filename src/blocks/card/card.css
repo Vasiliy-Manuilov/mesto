@@ -1,8 +1,7 @@
 .card {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
   background-color: #fff;
   border-radius: 10px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }

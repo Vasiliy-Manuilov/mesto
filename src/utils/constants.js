@@ -1,36 +1,3 @@
-export const initialCards = [
-  {
-    name: 'Архыз',
-    alt: 'Тающий снег на вершине Архыза',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    alt: 'Изгиб русла реки',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    alt: 'Человейники',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    alt: 'равнина перед сопкой',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    alt: 'Железная дорога через лес',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    alt: 'Заледенелое побережье Байкала',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-];
-
 export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -46,13 +13,18 @@ export const cardAddHtml = '.elements';
 
 /** Увеличить карточку */
 export const popupCardViewer = '.popup_type_viewer';
+export const popupDeleteCardSelector = ".popup_type_confirm";
 
 /** Редактирование профиля */
 export const buttonEditProfile = document.querySelector('.profile__edit-button');
+export const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
 export const profileTitle = '.profile__title';
 export const profileOccupation = '.profile__text';
+export const avatar = '.profile__image';
 export const popupProfile = '.popup_type_profile';
+export const popupAvatar = '.popup_type_avatar';
 export const formProfile = document.forms.profile;
+export const formAvatar = document.forms.avatar;
 
 // /** Добавить карточку */
 export const popupAddImage = '.popup_type_image';
