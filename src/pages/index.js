@@ -49,13 +49,13 @@ const popupEditProfile = new PopupWithForm(popupProfile, {
       .patchUserInfo(inputData.name, inputData.occupation)
       .then(() => {
         userInfoProfile.setUserInfo(inputData.name, inputData.occupation);
+        popupEditProfile.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         popupEditProfile.setLoadingMessage(false);
-        popupEditProfile.close();
       });
   },
   buttonText: 'Сохранить',
@@ -78,13 +78,13 @@ const popupUpdateAvatar = new PopupWithForm(popupAvatar, {
       .patchAvatar(inputData.url)
       .then(() => {
         userInfoProfile.setAvatar(inputData.url);
+        popupUpdateAvatar.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         popupUpdateAvatar.setLoadingMessage(false);
-        popupUpdateAvatar.close();
       });
   },
   buttonText: 'Сохранить',
@@ -150,11 +150,13 @@ const popupAddCard = new PopupWithForm(popupAddImage, {
   handleSubmitForm: (data) => {
     api
       .postNewCard(data['name-image'], data.link)
-      .then((res) => cardList.addItem(createCard(res)))
+      .then((res) => {
+        cardList.addItem(createCard(res));
+        popupAddCard.close();
+      })
       .catch(console.log)
       .finally(() => {
         popupAddCard.setLoadingMessage(false);
-        popupAddCard.close();
       });
   },
   buttonText: 'Создать',
@@ -184,9 +186,11 @@ function openConfirmDeletePopup(id, onSuccess) {
   popupDeleteCard.open(() =>
     api
       .deleteCard(id)
-      .then(onSuccess)
+      .then((data) => {
+        onSuccess(data);
+        popupDeleteCard.close();
+      })
       .catch(console.log)
-      .finally(() => popupDeleteCard.close())
   );
 }
 
@@ -199,22 +203,13 @@ const api = new Api({
   },
 });
 
-api
-  .getUserInfo()
-  .then((data) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([data, items]) => {
     userInfoProfile.setUserInfo(data.name, data.about);
     userInfoProfile.setAvatar(data.avatar);
     userInfoProfile.saveUserId(data._id);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api
-  .getInitialCards()
-  .then((items) => {
     cardList.renderItems(items);
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
   });
